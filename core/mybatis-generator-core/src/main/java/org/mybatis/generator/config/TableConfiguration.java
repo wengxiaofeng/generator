@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -103,12 +103,12 @@ public class TableConfiguration extends PropertyHolder {
 
         insertStatementEnabled = true;
         selectByPrimaryKeyStatementEnabled = true;
-        selectByExampleStatementEnabled = true;
+        selectByExampleStatementEnabled = false;
         updateByPrimaryKeyStatementEnabled = true;
         deleteByPrimaryKeyStatementEnabled = true;
-        deleteByExampleStatementEnabled = true;
-        countByExampleStatementEnabled = true;
-        updateByExampleStatementEnabled = true;
+        deleteByExampleStatementEnabled = false;
+        countByExampleStatementEnabled = false;
+        updateByExampleStatementEnabled = false;
     }
 
     public boolean isDeleteByPrimaryKeyStatementEnabled() {

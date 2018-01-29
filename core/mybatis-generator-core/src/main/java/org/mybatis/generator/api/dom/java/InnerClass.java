@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -228,6 +228,12 @@ public class InnerClass extends JavaElement {
         addFormattedAnnotations(sb, indentLevel);
 
         OutputUtilities.javaIndent(sb, indentLevel);
+
+        sb.append("@Data");
+        OutputUtilities.newLine(sb);
+        sb.append("@Accessors(chain = true)");
+        OutputUtilities.newLine(sb);
+
         sb.append(getVisibility().getValue());
 
         if (isAbstract()) {
@@ -309,15 +315,15 @@ public class InnerClass extends JavaElement {
             OutputUtilities.newLine(sb);
         }
 
-        Iterator<Method> mtdIter = methods.iterator();
-        while (mtdIter.hasNext()) {
-            OutputUtilities.newLine(sb);
-            Method method = mtdIter.next();
-            sb.append(method.getFormattedContent(indentLevel, false, compilationUnit));
-            if (mtdIter.hasNext()) {
-                OutputUtilities.newLine(sb);
-            }
-        }
+//        Iterator<Method> mtdIter = methods.iterator();
+//        while (mtdIter.hasNext()) {
+//            OutputUtilities.newLine(sb);
+//            Method method = mtdIter.next();
+//            sb.append(method.getFormattedContent(indentLevel, false, compilationUnit));
+//            if (mtdIter.hasNext()) {
+//                OutputUtilities.newLine(sb);
+//            }
+//        }
 
         if (innerClasses.size() > 0) {
             OutputUtilities.newLine(sb);

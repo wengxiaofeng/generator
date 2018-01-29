@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2017 the original author or authors.
+ *    Copyright 2006-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -94,6 +94,10 @@ public class Interface extends InnerInterface implements CompilationUnit {
         if (staticImports.size() > 0) {
             newLine(sb);
         }
+
+        sb.append("import org.springframework.stereotype.Repository");
+        sb.append(";");
+        newLine(sb);
 
         Set<String> importStrings = calculateImports(importedTypes);
         for (String importString : importStrings) {

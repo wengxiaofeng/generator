@@ -1,5 +1,5 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
+ *    Copyright 2006-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -121,17 +121,17 @@ public class ResultMapWithoutBLOBsElementGenerator extends
     }
 
     private void addResultMapConstructorElements(XmlElement answer) {
-        XmlElement constructor = new XmlElement("constructor"); //$NON-NLS-1$
+//        XmlElement constructor = new XmlElement("constructor"); //$NON-NLS-1$
 
         for (IntrospectedColumn introspectedColumn : introspectedTable
                 .getPrimaryKeyColumns()) {
-            XmlElement resultElement = new XmlElement("idArg"); //$NON-NLS-1$
+            XmlElement resultElement = new XmlElement("id"); //$NON-NLS-1$
 
             resultElement
                     .addAttribute(new Attribute(
                             "column", MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn))); //$NON-NLS-1$
-            resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
-                    introspectedColumn.getJdbcTypeName()));
+            resultElement.addAttribute(new Attribute("property", //$NON-NLS-1$
+                    introspectedColumn.getJavaProperty()));
             resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
                     introspectedColumn.getFullyQualifiedJavaType()
                             .getFullyQualifiedName()));
@@ -141,7 +141,7 @@ public class ResultMapWithoutBLOBsElementGenerator extends
                         "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
-            constructor.addElement(resultElement);
+            answer.addElement(resultElement);
         }
 
         List<IntrospectedColumn> columns;
@@ -151,13 +151,13 @@ public class ResultMapWithoutBLOBsElementGenerator extends
             columns = introspectedTable.getBaseColumns();
         }
         for (IntrospectedColumn introspectedColumn : columns) {
-            XmlElement resultElement = new XmlElement("arg"); //$NON-NLS-1$
+            XmlElement resultElement = new XmlElement("result"); //$NON-NLS-1$
 
             resultElement
                     .addAttribute(new Attribute(
                             "column", MyBatis3FormattingUtilities.getRenamedColumnNameForResultMap(introspectedColumn))); //$NON-NLS-1$
-            resultElement.addAttribute(new Attribute("jdbcType", //$NON-NLS-1$
-                    introspectedColumn.getJdbcTypeName()));
+            resultElement.addAttribute(new Attribute("property", //$NON-NLS-1$
+                    introspectedColumn.getJavaProperty()));
             resultElement.addAttribute(new Attribute("javaType", //$NON-NLS-1$
                     introspectedColumn.getFullyQualifiedJavaType()
                             .getFullyQualifiedName()));
@@ -167,9 +167,9 @@ public class ResultMapWithoutBLOBsElementGenerator extends
                         "typeHandler", introspectedColumn.getTypeHandler())); //$NON-NLS-1$
             }
 
-            constructor.addElement(resultElement);
+            answer.addElement(resultElement);
         }
 
-        answer.addElement(constructor);
+//        answer.addElement(constructor);
     }
 }
